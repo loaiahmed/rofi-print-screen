@@ -1,7 +1,7 @@
 -- Description:
 a Simple rofi menu for different ways to screenshot and screenrecord
 
--- Requirements
+-- Requirements:
 rofi
 slop
 scrot
