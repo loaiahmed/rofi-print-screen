@@ -5,6 +5,7 @@ SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
 VIDEO_DIR="$HOME/Videos/Recordings"
 TMP_IMG="/tmp/screenshot.png"
 RECORD_PID="/tmp/ffmpeg_screen_record.pid"
+RECORD_START_TIME="/tmp/record_start_time"
 DISPLAY=":0.0"
 RESOLUTION="1920x1080"
 FPS="30"
@@ -68,6 +69,7 @@ case "$CHOICE" in
       >/dev/null 2>&1 &
 
     echo $! > "$RECORD_PID"
+    date +%s > "$RECORD_START_TIME"
     notify-send "Screen recording started (full screen)"
     ;;
   "Record Screen (Selection)")
@@ -91,12 +93,14 @@ case "$CHOICE" in
       >/dev/null 2>&1 &
 
     echo $! > "$RECORD_PID"
+    date +%s > "$RECORD_START_TIME"
     notify-send "Screen recording started (selection)"
     ;;
   "Stop Screen Recording")
     if [[ -f "$RECORD_PID" ]]; then
       kill "$(cat "$RECORD_PID")"
-      rm "$RECORD_PID"
+      rm -f "$RECORD_PID"
+      rm -f "$RECORD_START_TIME"
 
       if [[ -f /tmp/record_target ]]; then
         xclip -selection clipboard -t video/mp4 -i "$TMP_VIDEO"
