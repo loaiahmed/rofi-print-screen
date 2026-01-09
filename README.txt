@@ -2,10 +2,18 @@
 a Simple rofi menu for different ways to screenshot and screenrecord with a simple i3blocks indicator script
 
 -- Requirements:
-rofi
-slop
-scrot
-ffmpreg
+* rofi
+* slop
+* scrot
+* ffmpeg
+
+-- Features:
+* fullscreen screenshot saved to a dir
+* selected region screenshot saved to a dir
+* selected region screenshot piped to clipboard 
+* fullscreen screenrecord saved to a dir
+* selected region screenrecord saved to a dir
+
 
 -- How to use:
 make sure you
